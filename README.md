@@ -1,10 +1,6 @@
-# GoGoG
+# GoGoG: Interactive Go Programming Learning Platform
 
-![GoGoG Banner](./assets/gogog-banner.png)
-
-## Creating a Gamified Golang Learning Platform
-
-GoGoG (Go, Go, Go!) is an open-source, web-based platform specifically designed to teach the Go programming language through interactive, gamified methods. This project aims to create an engaging learning experience that combines 3D visualizations with game mechanics to make learning Go intuitive, fun, and effective.
+GoGoG (Go, Go, Go!) is an open-source, web-based platform specifically designed to teach the Go programming language through interactive, gamified methods. This project creates an engaging learning experience by combining 3D visualizations with game mechanics to make learning Go intuitive, fun, and effective.
 
 ## 🎯 Project Vision
 
@@ -30,14 +26,14 @@ Traditional programming education often follows a "read and code" approach that 
 - TypeScript
 - React
 - three.js / React Three Fiber
-- WebAssembly for Go execution
-- TailwindCSS
+- Monaco Editor for code editing
+- Tailwind CSS for styling
+- Zustand for state management
 
 ### Backend
 - Go (Golang)
 - Gin web framework
 - PostgreSQL
-- Redis
 - JWT authentication
 
 ## 🚀 Getting Started
@@ -57,7 +53,16 @@ Traditional programming education often follows a "read and code" approach that 
    cd gogog
    ```
 
-2. Set up the backend
+2. Set up the database
+   ```bash
+   # Create a PostgreSQL database named 'gogog'
+   psql -c "CREATE DATABASE gogog;"
+   
+   # Apply the database schema
+   psql -d gogog -f backend/internal/db/schema.sql
+   ```
+
+3. Set up the backend
    ```bash
    cd backend
    go mod tidy
@@ -66,14 +71,14 @@ Traditional programming education often follows a "read and code" approach that 
    go run cmd/server/main.go
    ```
 
-3. Set up the frontend
+4. Set up the frontend
    ```bash
    cd frontend
    npm install
    npm run dev
    ```
 
-4. Open your browser at `http://localhost:3000`
+5. Open your browser at `http://localhost:3000`
 
 ## 📚 Learning Path
 
@@ -89,28 +94,35 @@ GoGoG structures the learning experience into modules with increasing complexity
 
 Each module contains interactive challenges, 3D visualizations, and rewards.
 
-## 👥 How to Contribute
+## 🏝️ Story-based Learning
 
-We welcome contributions from developers of all skill levels! See our [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed instructions on how to contribute.
-
-Areas where you can help:
-- Create new learning modules and challenges
-- Develop 3D visualizations for Go concepts
-- Improve the code execution environment
-- Enhance UI/UX design
-- Fix bugs and improve performance
-- Write documentation and tutorials
+The learning journey follows "The Go Treasure Islands" storyline where users embark on a swashbuckling adventure through the Go Archipelago - each island representing a Go programming concept. As a rookie programmer shipwrecked on these strange shores, you'll team up with Captain Gopher to repair your code-powered ship, navigate treacherous waters, and become the legendary Go Pirate King!
 
 ## 📋 Project Status
 
-GoGoG is currently in early development. Check our [roadmap](./docs/ROADMAP.md) for planned features and milestones.
+Project implementation is currently in progress. Completed components:
+
+- ✅ Basic project structure for both frontend and backend
+- ✅ Frontend UI components setup with React and TailwindCSS
+- ✅ three.js visualization engine integration
+- ✅ Code editor with Go syntax highlighting
+- ✅ Backend API structure with Gin framework
+- ✅ Database schema design
+- ✅ Authentication system with JWT
+
+Next steps:
+
+- 🔄 Complete content management system in the backend
+- 🔄 Implement WebAssembly for Go code execution
+- 🔄 Develop user progression and achievement systems
+- 🔄 Create advanced 3D visualizations for Go concepts
+- 🔄 Build comprehensive testing infrastructure
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgements
 
 - The Go community for their fantastic language and tools
-- All contributors and supporters of the project
-- Educational platforms that inspired this approach
+- three.js and React communities for visualization capabilities
