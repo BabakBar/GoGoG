@@ -1,0 +1,1 @@
+# Gamification package for GoGoG Python backend

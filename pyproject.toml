@@ -1,0 +1,35 @@
+[project]
+name = "gogog-backend"
+version = "0.1.0"
+description = "GoGoG Backend - Interactive Go Programming Learning Platform"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.23.2",
+    "pydantic>=2.4.2",
+    "pydantic-settings>=2.0.3",
+    "sqlalchemy>=2.0.22",
+    "psycopg2-binary>=2.9.9",
+    "python-jose>=3.3.0",
+    "passlib>=1.7.4",
+    "python-multipart>=0.0.6",
+    "redis>=5.0.1",
+    "pandas>=2.1.1"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.2",
+    "pytest-asyncio>=0.21.1",
+    "httpx>=0.25.0",
+    "black>=23.9.1",
+    "isort>=5.12.0",
+    "mypy>=1.6.1"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend"]

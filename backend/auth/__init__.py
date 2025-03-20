@@ -1,0 +1,1 @@
+# Authentication package for GoGoG Python backend
