@@ -19,11 +19,20 @@ func main() {
 	logger.Println("Starting GoGoG server...")
 
 	// Initialize database connection
-	database, err := db.NewDatabase()
-	if err != nil {
-		logger.Fatalf("Failed to connect to database: %v", err)
+	var database *db.Database
+	var err error
+	
+	// Check if database connection should be skipped for development
+	if os.Getenv("SKIP_DB") == "true" {
+		logger.Println("Skipping database connection in development mode")
+		database = &db.Database{} // Empty database for development
+	} else {
+		database, err = db.NewDatabase()
+		if err != nil {
+			logger.Fatalf("Failed to connect to database: %v", err)
+		}
+		logger.Println("Connected to database successfully")
 	}
-	logger.Println("Connected to database successfully")
 
 	// Initialize router with appropriate mode
 	if os.Getenv("ENV") == "production" {

@@ -63,6 +63,11 @@ func (d *Database) GetDB() *sql.DB {
 	return d.db
 }
 
+// IsMockDB returns true if this is a mock database (no actual connection)
+func (d *Database) IsMockDB() bool {
+	return d.db == nil
+}
+
 // Helper function to get environment variable with fallback
 func getEnv(key, fallback string) string {
 	if value, exists := os.LookupEnv(key); exists {

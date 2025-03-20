@@ -152,6 +152,14 @@ func LoginUser(c *gin.Context, database *db.Database, logger *log.Logger) {
 // JWTMiddleware returns a middleware that checks JWT tokens
 func JWTMiddleware(database *db.Database, logger *log.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
+		// If we're using a mock database in development, return a mock user ID
+		if database.IsMockDB() {
+			logger.Println("Using mock authentication")
+			c.Set("userID", "00000000-0000-0000-0000-000000000000") // Mock user ID
+			c.Next()
+			return
+		}
+		
 		// Get token from header
 		authHeader := c.GetHeader("Authorization")
 		if authHeader == "" {
@@ -204,6 +212,24 @@ func GetUser(c *gin.Context, database *db.Database, logger *log.Logger) {
 	userID, exists := c.Get("userID")
 	if !exists {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "User not authenticated"})
+		return
+	}
+
+	// If using mock database in development, return a mock user
+	if database.IsMockDB() {
+		now := time.Now()
+		mockUser := models.User{
+			ID:            userID.(string),
+			Username:      "testuser",
+			Email:         "test@example.com",
+			Points:        100,
+			Level:         2,
+			Streak:        3,
+			LastStreakDay: now.AddDate(0, 0, -1),
+			CreatedAt:     now.AddDate(0, -1, 0),
+			LastLoginAt:   now,
+		}
+		c.JSON(http.StatusOK, mockUser)
 		return
 	}
 
