@@ -18,6 +18,54 @@
 
 ---
 
+## Basic Go Syntax
+
+- Go's syntax borrows from C, C++, Pascal, Modula, and Oberon.
+- It aims to reduce typing and potential bugs.
+- **Case Sensitivity:** Go is case-sensitive. Identifiers must be spelled exactly.
+- **Naming Conventions:** Variable and package names are typically lowercase or camel case. Package names should be single words, all lowercase (convention).
+- **Exported Names:** Exported (public) functions and fields start with an uppercase letter.
+- **Semicolons:** Generally not needed; a line feed implies one and the lexer adds them.
+- **Code Blocks:** Indicated by braces `{}`. The opening brace **must** be on the same line as the preceding statement.
+- **Built-in Functions:** Functions from the `builtin` package (like `len`, `panic`, `recover`) are always available without explicit import. More details can be found at `golang.org/pkg/builtin`.
+
+---
+
+## Writing and Running Your First Go Application
+
+To create and run a basic Go application, follow these steps:
+
+1.  **Create the Application File:** Create a file named `hello.go` in your desired project directory (e.g., `D:\Tools\GitHub\GoGoG\Ch01\01_05b`).
+
+2.  **Add Basic Go Code:** Inside `hello.go`, add the following code:
+
+    ```go
+    package main
+
+    import "fmt"
+
+    func main() {
+        fmt.Println("Hello, world!")
+    }
+    ```
+
+    *   `package main`: Declares the package as `main`, making it an executable program.
+    *   `import "fmt"`: Imports the `fmt` package, which provides functions for formatted I/O (like printing to the console).
+    *   `func main()`: The main function where program execution begins.
+    *   `fmt.Println("Hello, world!")`: Prints the string "Hello, world!" followed by a newline.
+
+3.  **Initialize a Go Module:** Open your terminal in the project directory (e.g., `D:\Tools\GitHub\GoGoG\Ch01\01_05b`) and run the following command:
+
+    ```bash
+    go mod init com.example/hello
+    ```
+
+    This command creates a `go.mod` file, which defines your module path and manages dependencies. You might see a suggestion to run `go mod tidy` afterwards; this command synchronizes the module's dependencies.
+
+4.  **Run or Debug the Application:** You can now run the application. In VS Code, you can use the Run and Debug feature. Select `Run and Debug` from the sidebar, and VS Code should detect the Go file and provide options to run or debug. Clicking `Run and Debug` will execute the `main` function, and you will see the output "Hello, world!" in the integrated terminal or debug console. Alternatively, you can run the application directly from the terminal using `go run .`.
+
+---
+
 ## 1. Basic Programming Concepts
 
 ### a) Variables
