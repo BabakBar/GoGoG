@@ -207,3 +207,144 @@ func main() {
 - There are other ways to get input, such as using scan functions, but those require pointers and will be covered later.
 
 ---
+
+# Using Math Operators in Go
+
+---
+
+Go supports a standard set of mathematical operators similar to other C-style languages:
+
+- Addition: `+`
+- Subtraction: `-`
+- Multiplication: `*`
+- Division: `/`
+- Remainder (modulo): `%`
+- Bitwise operators: `&`, `|`, `^`, `<<`, `>>`, etc.
+
+## Type Consistency in Operations
+
+A key rule in Go: **all operands in a mathematical operation must be of the same type**. Go does not perform implicit type conversion. For example, you cannot add an `int` and a `float64` directly:
+
+```go
+// This will cause a compile-time error:
+// total := i1 + f2 // invalid operation: mismatched types int and float64
+```
+
+To fix this, convert one type to match the other:
+
+```go
+total := float64(i1) + f2 // Now both are float64
+```
+
+Each built-in type has a matching conversion function (e.g., `float64()`, `int()`).
+
+## Declaring Multiple Variables
+
+You can declare multiple variables of the same type in a single statement:
+
+```go
+i1, i2, i3 := 12, 45, 68
+```
+
+## Example: Math Operations
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    i1, i2, i3 := 12, 45, 68
+    intSum := i1 + i2 + i3
+    fmt.Println("Integer sum:", intSum)
+
+    f1, f2, f3 := 23.5, 65.1, 76.3
+    floatSum := f1 + f2 + f3
+    fmt.Println("Float sum:", floatSum)
+
+    // Mixing types requires explicit conversion
+    total := float64(i1) + f2
+    fmt.Println("Result:", total)
+
+    // Multiplication with conversion
+    product := float64(i1) * f2
+    fmt.Println("Product:", product)
+}
+```
+
+## Notes
+
+- Go does not perform implicit type conversion in math operations.
+- Use explicit conversion functions to match types.
+- Floating-point math may have precision issues (common in most languages).
+- Try other operators (subtraction, division, remainder) on your own.
+- For advanced math, see the `math` package (covered later).
+
+---
+
+# Using the math Package in Go
+
+---
+
+Go's `math` package provides mathematical constants and functions commonly used in programming, such as rounding, trigonometry, exponentiation, and more.
+
+## Floating-Point Precision and Rounding
+
+Floating-point values in Go (as in many languages) are stored in binary format, which can lead to precision issues. For example, adding several float values may not yield the exact decimal result you expect.
+
+To round a floating-point value to a specific precision, you can use `math.Round`:
+
+```go
+sum = math.Round(sum*100) / 100 // Rounds to two decimal places
+```
+
+## Mathematical Constants
+
+The `math` package includes useful constants, such as:
+- `math.Pi` (the value of π)
+
+Example:
+
+```go
+fmt.Println("The value of PI is:", math.Pi)
+```
+
+## Example: Using math Package
+
+```go
+package main
+
+import (
+    "fmt"
+    "math"
+)
+
+func main() {
+    f1, f2, f3 := 23.5, 65.1, 76.3
+    sum := f1 + f2 + f3
+    fmt.Println("Float sum:", sum)
+
+    // Round to two decimal places
+    sum = math.Round(sum*100) / 100
+    fmt.Printf("The sum is now %v\n\n", sum)
+
+    // Use math.Pi constant
+    fmt.Println("The value of PI is:", math.Pi)
+
+    // Calculate circumference of a circle
+    circleRadius := 15.5
+    circumference := circleRadius * 2 * math.Pi
+    fmt.Printf("Circumference: %.2f\n", circumference)
+}
+```
+
+- `math.Round(x)` rounds to the nearest integer.
+- To round to a specific number of decimal places, multiply, round, then divide.
+- `math.Pi` provides the value of π for geometry calculations.
+- Use `fmt.Printf("%.2f", value)` to format output to two decimal places.
+
+## More Functions
+
+The `math` package includes many other functions (abs, sqrt, pow, sin, cos, etc.). See the [Go math package documentation](https://pkg.go.dev/math) for more details.
+
+---
